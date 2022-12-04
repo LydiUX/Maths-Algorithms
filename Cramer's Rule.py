@@ -8,7 +8,7 @@ def systemSolution(coefficientMatrix, solutionVector, whichSolution):
     
     def det(matrix):
         try:
-            #reduce to row-echelon form
+            #reduce to row-echelon form using gaussian elimination
             size = len(matrix)
             for i in range(size - 1): 
                 for j in range(size - 1, i, -1):
