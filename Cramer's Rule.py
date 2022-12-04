@@ -63,7 +63,7 @@ try:
     print(f'Your system of equations should have {size} solutions.\nEnter the solutions of your equations:')
     solution = [1 for _ in range(size)]
     for i in range(size):
-        solution[i] = float(input(f'Solution corresponding to equation {i + 1}: '))
+        solution[i] = float(input(f'Solution corresponding to equation {i+1}: '))
     sol = int(input('Which solution would you like to see? '))
     print(systemSolution(coefMatrix, solution, sol))
 except:
