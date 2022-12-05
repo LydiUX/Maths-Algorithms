@@ -25,7 +25,7 @@ def systemSolution(coefficientMatrix, solutionVector, whichSolution):
                             continue
                         for l in range(size):
                             matrix[j][l] = matrix[j][l] - computationalRatio * matrix[j - 1][l]
-            #the sum of products of a row-echelon matrix is the determinant
+            #the product of diagnols of a row-echelon matrix is the determinant
             determinant = 1
             for i in range(size):
                 for j in range(size):
