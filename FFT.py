@@ -73,4 +73,6 @@ def FFT_MULTIPLY(num1, num2):
         ans = (ans << 1) | int(bit)
     return ans
 
+assert(FFT_MULTIPLY(2,3)) == 6
+
 print(FFT_MULTIPLY(3004,2003))
