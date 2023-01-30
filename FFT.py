@@ -1,5 +1,6 @@
 #Fast multiplication in under O(n^2)! However, does not work with huge integers (ironic, because this is the one that is a galactic algorithm)
 #This is due to floating point rounding errors in the complex number module of the math library.
+from decimal import *
 import math
 
 def ROOTS_OF_UNITY(root):

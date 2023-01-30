@@ -17,20 +17,18 @@ def bitwiseShiftLeft(num, shiftIndex):
     return sum(x * 10**i for i, x in enumerate(shifted[::-1]))
 
 def bitwiseShiftRight(num, shiftIndex):
-    try:
-        shifted = [int(i) for i in str(num)]
+    shifted = [int(i) for i in str(num)]
+    if shiftIndex >= len(shifted):
         for _ in range(shiftIndex):
             shifted.pop()
         return sum(x * 10**i for i, x in enumerate(shifted[::-1]))
-    except:
-        return num
-
-def quadruple(num):
-    return dec(bitwiseShiftLeft(bn(num), 2))
 
 def bitwiseMultiply(a, b: int) -> int:
-    
-    pass
+    if a == 0 or b == 0:
+        return 0
+    if b & 1 == 0:
+        return bitwiseMultiply(a<<1, b>>1)
+    else:
+        return a + bitwiseMultiply(a<<1, (b-1)>>1)
 
-
-
+assert bitwiseMultiply(2,4) == 8
