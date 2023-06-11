@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <time.h>
 
+//driver code
 uint64_t modularInverse(uint64_t base, uint64_t modulus){ 
     uint64_t result = 1;
     uint64_t exponent = modulus - 2; //fermat's little theorem a^-1 = a^(p-2) mod p -> inverse = base^(modulus-2) mod modulus
@@ -29,7 +30,7 @@ int main(){
     uint64_t number;
     uint64_t modulus;
     printf("Print the number (of which the factorial will be taken) and the modulus (must be prime) seperated by a space.\n");
-    scanf("%llu %llu\n", &number, &modulus);
+    scanf("%llu %llu", &number, &modulus);
     clock_t t;
     t = clock();
     printf("%llu! mod %llu = %llu \n", number, modulus, factorialMod(number, modulus));
