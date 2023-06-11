@@ -29,7 +29,7 @@ int main(){
     uint64_t number;
     uint64_t modulus;
     printf("Print the number (of which the factorial will be taken) and the modulus (must be prime) seperated by a space.\n");
-    scanf("%llu %llu", &number, &modulus);
+    scanf("%llu %llu\n", &number, &modulus);
     clock_t t;
     t = clock();
     printf("%llu! mod %llu = %llu \n", number, modulus, factorialMod(number, modulus));
