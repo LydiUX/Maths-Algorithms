@@ -22,6 +22,8 @@ double rungekutta(double (*f)(double, double), double* initx, double* inity, dou
 int main(){
     double initx = 0;
     double inity = 1;
-    printf("%lf\n", rungekutta(function, &initx, &inity, 1, 2));
+    double evaluatedx = 1;
+    int steps = 2;
+    printf("The solution to dy/dx (%d steps) with y(%lf)=%lf is y(%lf)=%lf\n", steps, initx, inity, evaluatedx, rungekutta(function, &initx, &inity, evaluatedx, steps));
     return 0;
 }
