@@ -1,3 +1,5 @@
+//runge-kutta fourth-order numerical integrator
+
 #include <stdio.h>
 #include <math.h>
 
