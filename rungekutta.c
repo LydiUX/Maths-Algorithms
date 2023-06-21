@@ -24,21 +24,19 @@ double numericalIntegrate(double (*f)(double, double), double xi, double xf, int
     return rungekutta((*f), &initx, &inity, xf, steps) - rungekutta((*f), &initx, &inity, xi, steps);
 }
 
+//test functions
 double function(double x, double y){
-    return pow(x,4);
+    return pow(x,4) + y;
 }
 
 double function2(double x, double y){
-    return x; //do not use the y parameter here - the numerical integrater is for one variable only.
+    return cos(x); //do not use the y parameter here - the numerical integrater is for one variable only.
 }
-
 
 int main(){
     double initx = 0;
     double inity = 0;
-    double evaluatedx = 5;
-    int steps = 20;
-    printf("The solution to dy/dx (%d steps) with y(%lf)=%lf is y(%lf)=%lf\n", steps, initx, inity, evaluatedx, rungekutta(function, &initx, &inity, evaluatedx, steps));
-    printf("%lf\n", numericalIntegrate(function2, 7, 10, 10));
+    printf("%lf\n", rungekutta(function, &initx, &inity, 5, 20)); //solution to dy/dx=x^4+y(x) with y(0)=0 at x=5
+    printf("%lf\n", numericalIntegrate(function2, 0, 10, 20)); //integral of f(x)=cos(x) from x=0 to x=10
     return 0;
 }
