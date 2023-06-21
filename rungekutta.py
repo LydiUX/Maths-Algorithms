@@ -1,4 +1,4 @@
-#runge-kutta fourth-order numerical integrator
+#runge-kutta fourth-order numerical integrater
 
 import math
 
@@ -37,7 +37,7 @@ class rungekutta:
         return self.rungekutta(lambda x,y: func(x), initx, inity, xf) - self.rungekutta(lambda x,y: func(x), initx, inity, xi)
     
 #tests
-integrator = rungekutta(steps=100)
-print(integrator.rungekutta(lambda x,y: x**2+y, 4, 6, 10)) #solution to dy/dx=x^2+y(x) with initial condition y(4)=6 at x=10
-print(integrator.numericalIntegrate(lambda x: math.sin(x), 5, 10)) #definite integral of sin(x) from x=5 to x=10
-print(integrator.polynomialIntegrate(5,10,2,4,3,6)) #definite integral of 2x^3+4x^2+3x+6 from x=5 to x=10
+integrater = rungekutta(steps=100)
+print(integrater.rungekutta(lambda x,y: x**2+y, 4, 6, 10)) #solution to dy/dx=x^2+y(x) with initial condition y(4)=6 at x=10
+print(integrater.numericalIntegrate(lambda x: math.sin(x), 5, 10)) #definite integral of sin(x) from x=5 to x=10
+print(integrater.polynomialIntegrate(5,10,2,4,3,6)) #definite integral of 2x^3+4x^2+3x+6 from x=5 to x=10
