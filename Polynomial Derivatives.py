@@ -23,9 +23,14 @@ def polynomialDerivative(format, *args):
             if (len(coefListStr) - i - 1) != 0:
                 coefListStr[i] = coefListStr[i] + "*x^" + str((len(coefListStr) - i - 1)) + "+"
         return 'P\'(x)=' + ''.join(coefListStr)
+    else:
+        return
     
 def evaluatePolynomial(func, evalpoint):
-    return func(evalpoint)
+    try:
+        return func(evalpoint)
+    except:
+        raise TypeError
 
-print(polynomialDerivative('printed', 9,4,3,2))
-print(evaluatePolynomial(polynomialDerivative('function', 9,4,3,2), 4))
+print(polynomialDerivative('p', 9,4,3,2))
+print(evaluatePolynomial(polynomialDerivative('s', 9,4,3,2), 4))
