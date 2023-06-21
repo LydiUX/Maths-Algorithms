@@ -76,20 +76,41 @@ class rungekutta4(metaclass = RKIntegrators): #(fourth-order Runge-Kutta)
         k4 = func(initx + h, inity + k3 * h) #slope at the end of the interval
         return (h/6) * (k1 + 2*k2 + 2*k3 + k4) #weighted average towards midpoint
 
-#tests
+class finiteDifferenceDerivative:
+    def __init__(self, stepsize):
+        self.stepsize = stepsize
+        
+    def centralDerivative(self, func, evalpoint):
+        return 0.5 * (1/self.stepsize) * (func(evalpoint + self.stepsize) - func(evalpoint - self.stepsize))
+    
+    def forwardDerivative(self, func, evalpoint):
+        return (1/self.stepsize) * (func(evalpoint + self.stepsize) - func(evalpoint))
+    
+    def backwardDerivative(self, func, evalpoint):
+        return (1/self.stepsize) * (-1 * func(evalpoint - self.stepsize) + func(evalpoint))
+    
 integrator1 = rungekutta1(steps=100)
+print("First-Order Runge-Kutta")
 print(integrator1.evaluate(lambda x,y: x**2+y, 4, 6, 10)) #solution to dy/dx=x^2+y(x) with initial condition y(4)=6 at x=10
 print(integrator1.numericalIntegrate(lambda x: math.sin(x), 5, 10)) #definite integral of sin(x) from x=5 to x=10
 print(integrator1.polynomialIntegrate(5,10,2,4,3,6)) #definite integral of 2x^3+4x^2+3x+6 from x=5 to x=10
 integrator2 = rungekutta2(steps=100)
+print("Second-Order Runge-Kutta")
 print(integrator2.evaluate(lambda x,y: x**2+y, 4, 6, 10)) #solution to dy/dx=x^2+y(x) with initial condition y(4)=6 at x=10
 print(integrator2.numericalIntegrate(lambda x: math.sin(x), 5, 10)) #definite integral of sin(x) from x=5 to x=10
 print(integrator2.polynomialIntegrate(5,10,2,4,3,6)) #definite integral of 2x^3+4x^2+3x+6 from x=5 to x=10
 integrator3 = rungekutta3(steps=100)
+print("Third-Order Runge-Kutta")
 print(integrator3.evaluate(lambda x,y: x**2+y, 4, 6, 10)) #solution to dy/dx=x^2+y(x) with initial condition y(4)=6 at x=10
 print(integrator3.numericalIntegrate(lambda x: math.sin(x), 5, 10)) #definite integral of sin(x) from x=5 to x=10
 print(integrator3.polynomialIntegrate(5,10,2,4,3,6)) #definite integral of 2x^3+4x^2+3x+6 from x=5 to x=10
 integrator4 = rungekutta4(steps=100)
+print("Fourth-Order Runge-Kutta")
 print(integrator4.evaluate(lambda x,y: x**2+y, 4, 6, 10)) #solution to dy/dx=x^2+y(x) with initial condition y(4)=6 at x=10
 print(integrator4.numericalIntegrate(lambda x: math.sin(x), 5, 10)) #definite integral of sin(x) from x=5 to x=10
 print(integrator4.polynomialIntegrate(5,10,2,4,3,6)) #definite integral of 2x^3+4x^2+3x+6 from x=5 to x=10
+differentiator = finiteDifferenceDerivative(stepsize=0.001)
+print("Finite Difference Differentiation")
+print(differentiator.backwardDerivative(lambda x: x**2, 5)) #derivative of f(x)=x^2 evaluated at x=5
+print(differentiator.centralDerivative(lambda x: x**2, 5)) #derivative of f(x)=x^2 evaluated at x=5
+print(differentiator.forwardDerivative(lambda x: x**2, 5)) #derivative of f(x)=x^2 evaluated at x=5
