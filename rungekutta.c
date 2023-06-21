@@ -1,4 +1,4 @@
-//runge-kutta fourth-order numerical integrater
+//runge-kutta fourth-order numerical integrator
 
 #include <stdio.h>
 #include <math.h>
@@ -30,7 +30,7 @@ double function(double x, double y){
 }
 
 double function2(double x, double y){
-    return cos(x); //do not use the y parameter here - the numerical integrater is for one variable only.
+    return cos(x); //do not use the y parameter here - the numerical integrator is for one variable only.
 }
 
 int main(){
