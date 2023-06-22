@@ -32,5 +32,4 @@ def evaluatePolynomial(func, evalpoint):
     except:
         raise TypeError
 
-print(polynomialDerivative('p', 9,4,3,2))
-print(evaluatePolynomial(polynomialDerivative('s', 9,4,3,2), 4))
+print(polynomialDerivative('p', 2,5,7,1,2,43,5,0))
