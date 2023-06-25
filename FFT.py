@@ -1,4 +1,4 @@
-#Fast multiplication in under O(n^2)! However, does not work with huge integers (ironic, because this is the one that is a galactic algorithm)
+#Fast multiplication in under O(n^2)! However, does not work with huge integers
 #This is due to floating point rounding errors in the complex number module of the math library.
 from decimal import *
 import math
@@ -77,3 +77,4 @@ def FFT_MULTIPLY(num1, num2):
 assert(FFT_MULTIPLY(2,3)) == 6
 
 print(FFT_MULTIPLY(3004,2003))
+print(ROOTS_OF_UNITY(4))
