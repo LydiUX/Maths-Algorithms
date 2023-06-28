@@ -16,7 +16,7 @@ int* sieve(int n) {
             }
         }
     }
-    int* primes = (int*)malloc((n + 1) * sizeof(int)); // dynamically allocated array
+    int* primes = (int*)malloc((n + 1) * sizeof(int)); // dynamically allocated array because we don't know how long primes list is
     int counter = 0;
     for (int i = 0; i <= n; i++) {
         if (primeList[i]) {
