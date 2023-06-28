@@ -7,8 +7,8 @@ int* sieve(int n) {
     for (int i = 0; i < n + 1; i++) {
         primeList[i] = true; // set all values within list to true, or not a prime
     }
-    primeList[0] = false; // set 0 as not prime
-    primeList[1] = false; // set 1 as not prime
+    primeList[0] = true; // set 0 as not prime
+    primeList[1] = true; // set 1 as not prime
     for (int i = 2; i * i <= n; i++) { // starting from 2
         if (primeList[i]) { // check if value within list is true
             for (int j = i * i; j <= n; j += i) { // if it is true, get rid of all its multiples
