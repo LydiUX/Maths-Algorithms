@@ -30,7 +30,7 @@ int* sieve(int n) {
 }
 
 int main() {
-    int n = 100000;
+    int n = 1000000;
     int* primes = sieve(n);
     clock_t t;
     t = clock();
