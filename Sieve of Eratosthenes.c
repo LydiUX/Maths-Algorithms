@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <time.h>
 
 int* sieve(int n) {
     bool primeList[n + 1];
@@ -29,11 +30,15 @@ int* sieve(int n) {
 }
 
 int main() {
-    int n = 100;
+    int n = 100000;
     int* primes = sieve(n);
+    clock_t t;
+    t = clock();
     for (int i = 0; primes[i] != -1; i++) {
         printf("%d: %d\n", i + 1, primes[i]);
     }
+    t = clock() - t;
+    printf("Time taken: %f seconds \n", ((double)t)/CLOCKS_PER_SEC);
     free(primes); // deallocate the dynamically allocated array
     return 0;
 }
