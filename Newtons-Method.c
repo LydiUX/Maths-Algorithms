@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <time.h>
 
 double func(double x){
     return pow(x, 4) + sin(2 * x) - 6;
@@ -34,7 +35,9 @@ double newton(double (*f)(double), double* initialGuess, int iterations){
 }
 
 int main(){
-    double initialGuess = -1.5;
+    double initialGuess = 100;
+    clock_t t = clock();
     printf("Newton's method converges to: %f\n", newton(func, &initialGuess, 1000));
+    printf("Time taken: %f seconds \n", ((double)clock() - t)/CLOCKS_PER_SEC);
     return 0;
 }
