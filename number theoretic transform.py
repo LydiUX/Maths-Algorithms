@@ -48,24 +48,55 @@ def modular_power(a, b, modulus):
     while b > 0:
         if b & 1 == 1:
             result *= a % modulus
-        b >>= 1
+        b >>= 1 #equivalent to b //= 2
         a *= a % modulus
     return result
 
 def find_galois_field(k):
     '''
     we want to find a suitable field such that generator^(2^(k-1)) = -1 mod modulus
-    and N = 2^(ak) + 1
+    and N = 2^(ak) + 1. This ensures that all polynomials are subject to constraint
+    (size | modulus - 1) within the galois field.
     '''
     a = 1
     while 1:
         modulus = (a << k) + 1 #equivalent to 2^(ak) + 1
         for generator in range(2, a + 1):
-            if modular_power(generator, 1 << (k - 1), modulus) == modulus - 1:
+            if modular_power(generator, 1 << (k - 1), modulus) == modulus - 1: # -1 mod modulus = modulus - 1
                 return modulus, generator
         a += 1
-    
 
-assert(NTT([1,4,4,3], 4, 2, 5)) == [2,4,3,0]
-assert(INTT([2,4,3,0], 4, 2, 5)) == [1,4,4,3]
-assert(find_galois_field(4)) == (193, 3)
+def convolve(seq1, seq2):
+    n = len(seq1)
+    k = len(bin(n)) - 3 #-3 because python's shitty bin() function adds overhead
+    modulus, generator = find_galois_field(k)
+    NTT(seq1, len(seq1), generator, modulus)
+    NTT(seq2, len(seq2), generator, modulus)
+    convolved = [seq1[i] * seq2[i] for i in range(len(seq1))]
+    return INTT(convolved, len(convolved), generator, modulus)
+
+def multiply_coefs(x, y):    
+        n = 1 << (len(bin(max(len(x),len(y))-1))-1)
+        x = x + [0] * (n - len(x))
+        y = y + [0] * (n - len(y))
+        z = convolve(x, y)
+        carry = 0
+        non_zero = 0
+        for i in range(len(z)):
+            carry += z[i]
+            z[i] = carry % 2
+            if z[i] != 0:
+                non_zero = i
+            carry = carry / 2
+        return z[:non_zero+1]
+    
+def multiply_fast(num1, num2):
+    num1Array = [int(digit) for digit in bin(num1)[:1:-1]]
+    num2Array = [int(digit) for digit in bin(num2)[:1:-1]]
+    answerArray = multiply_coefs(num1Array, num2Array)
+    ans = 0
+    for bit in reversed(answerArray):
+        ans = (ans << 1) | int(bit)
+    return ans
+
+print(multiply_fast(5230494, 2349540))
