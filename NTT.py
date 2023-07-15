@@ -1,4 +1,29 @@
 #number theoretic transform
+import time
+
+def modular_power(a, b, modulus):
+    if a == 0:
+        return 0 
+    result = 1
+    a %= modulus
+    while b > 0:
+        if b & 1 == 1:
+            result *= a % modulus
+        b >>= 1 #equivalent to b //= 2
+        a *= a % modulus
+    return result
+
+def extended_gcd(a, b):
+    if b == 0:
+        return a, 1, 0
+    gcd, x, y = extended_gcd(b, a % b)
+    return gcd, y, x - (a // b) * y
+    
+def modular_inverse(a, modulus):
+    gcd, x, _ = extended_gcd(a, modulus)
+    if gcd != 1:
+        raise ValueError #modular multiplicative inverse does not exist
+    return x % modulus
 
 def NTT(polynomial, size, generator, modulus): 
     '''
@@ -18,18 +43,6 @@ def NTT(polynomial, size, generator, modulus):
         polynomial[i + size // 2] = (polynomial_even[i] + generator**(i + size // 2) * polynomial_odd[i]) % modulus
     return polynomial
 
-def extended_gcd(a, b):
-    if b == 0:
-        return a, 1, 0
-    gcd, x, y = extended_gcd(b, a % b)
-    return gcd, y, x - (a // b) * y
-    
-def modular_inverse(a, modulus):
-    gcd, x, _ = extended_gcd(a, modulus)
-    if gcd != 1:
-        raise ValueError #modular multiplicative inverse does not exist
-    return x % modulus
-
 def INTT(polynomial, size, generator, modulus):
     if size == 1:
         return polynomial
@@ -39,18 +52,6 @@ def INTT(polynomial, size, generator, modulus):
     for i in range(size):
         polynomial[i] = (modular_inverse(size, modulus) * polynomial[i]) % modulus
     return polynomial
-
-def modular_power(a, b, modulus):
-    if a == 0:
-        return 0 
-    result = 1
-    a %= modulus
-    while b > 0:
-        if b & 1 == 1:
-            result *= a % modulus
-        b >>= 1 #equivalent to b //= 2
-        a *= a % modulus
-    return result
 
 def find_galois_field(k):
     '''
@@ -90,7 +91,7 @@ def multiply_coefs(x, y):
             carry = carry / 2
         return z[:non_zero+1]
     
-def multiply_fast(num1, num2):
+def multiply_NTT(num1, num2):
     num1Array = [int(digit) for digit in bin(num1)[:1:-1]]
     num2Array = [int(digit) for digit in bin(num2)[:1:-1]]
     answerArray = multiply_coefs(num1Array, num2Array)
@@ -99,4 +100,6 @@ def multiply_fast(num1, num2):
         ans = (ans << 1) | int(bit)
     return ans
 
-print(multiply_fast(5230494, 2349540))
+t = time.time()
+print(multiply_NTT(523049394854, 2349394856594540))
+print(f'{time.time() - t}s')
