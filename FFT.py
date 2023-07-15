@@ -48,8 +48,7 @@ def INT_REAL_CONVOLVE(p1, p2): #this convolves the product of the two transforms
     convolved = IFFT([p1[i] * p2[i] for i in range(n)])
     return [round(convolved[i].real) for i in range(len(convolved))]
 
-#code courtesy of https://github.com/Akashnil/fft-multiplication/blob/master/complex-arithmetic.py#L21
-#I fixed some bugs and this now works; my approach would be the same. See https://www.cs.rug.nl/~ando/pdfs/Ando_Emerencia_multiplying_huge_integers_using_fourier_transforms_paper.pdf
+#https://www.cs.rug.nl/~ando/pdfs/Ando_Emerencia_multiplying_huge_integers_using_fourier_transforms_paper.pdf
 
 def FFT_MULTIPLY(num1, num2):
     def MULTIPLY_COEFS(x, y):    
