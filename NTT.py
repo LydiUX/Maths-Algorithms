@@ -27,7 +27,7 @@ def modular_inverse(a, modulus):
 
 def NTT(polynomial, size, generator, modulus): 
     '''
-    Size refers to the size of the polyonmial. The size of the polynomial is a power of 2; i.e. 2^k. Constraint: (size | modulus - 1).
+    size refers to the size of the polyonmial. The size of the polynomial is a power of 2; i.e. 2^k. Constraint: (size | modulus - 1).
     The maximum degree of the polynomial is n-1. 
     The generator is the primitive root of unity under the galois field F_modulus.
     '''
