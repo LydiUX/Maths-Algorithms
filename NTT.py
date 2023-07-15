@@ -48,7 +48,7 @@ def INTT(polynomial, size, generator, modulus):
         return polynomial
     for i in range(1, (size + 1) // 2):
         polynomial[size - i], polynomial[i] = polynomial[i], polynomial[size - i]
-    NTT(polynomial, size, generator, modulus)
+    polynomial = NTT(polynomial, size, generator, modulus)
     for i in range(size):
         polynomial[i] = (modular_inverse(size, modulus) * polynomial[i]) % modulus
     return polynomial
