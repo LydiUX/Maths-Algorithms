@@ -56,7 +56,7 @@ def INTT(polynomial, size, generator, modulus):
 def find_galois_field(k):
     '''
     we want to find a suitable field such that generator^(2^(k-1)) = -1 mod modulus
-    and N = 2^(ak) + 1. This ensures that all polynomials are subject to constraint
+    and modulus = 2^(ak) + 1. This ensures that all polynomials are subject to constraint
     (size | modulus - 1) within the galois field.
     '''
     a = 1
@@ -68,8 +68,7 @@ def find_galois_field(k):
         a += 1
 
 def convolve(seq1, seq2):
-    k = len(bin(len(seq1))) - 3 #-3 because python's shitty bin() function adds overhead
-    modulus, generator = find_galois_field(k)
+    modulus, generator = find_galois_field(len(bin(len(seq1))) - 3) #-3 because python's shitty bin() function adds overhead
     NTT(seq1, len(seq1), generator, modulus)
     NTT(seq2, len(seq2), generator, modulus)
     convolved = [seq1[i] * seq2[i] for i in range(len(seq1))]
@@ -91,11 +90,11 @@ def multiply_coefs(x, y):
         return z[:non_zero+1]
     
 def multiply_NTT(num1, num2):
-    num1Array = [int(digit) for digit in bin(num1)[:1:-1]]
-    num2Array = [int(digit) for digit in bin(num2)[:1:-1]]
-    answerArray = multiply_coefs(num1Array, num2Array)
+    num1_array = [int(digit) for digit in bin(num1)[:1:-1]]
+    num2_array = [int(digit) for digit in bin(num2)[:1:-1]]
+    answer_array = multiply_coefs(num1_array, num2_array)
     ans = 0
-    for bit in reversed(answerArray):
+    for bit in reversed(answer_array):
         ans = (ans << 1) | int(bit)
     return ans
 
