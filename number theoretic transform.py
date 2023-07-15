@@ -1,5 +1,4 @@
 #number theoretic transform
-import math
 
 def NTT(polynomial, size, generator, modulus): 
     '''
@@ -69,4 +68,4 @@ def find_galois_field(k):
 
 assert(NTT([1,4,4,3], 4, 2, 5)) == [2,4,3,0]
 assert(INTT([2,4,3,0], 4, 2, 5)) == [1,4,4,3]
-print(find_galois_field(4))
+assert(find_galois_field(4)) == (193, 3)
