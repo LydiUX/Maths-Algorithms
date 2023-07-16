@@ -69,7 +69,6 @@ def find_galois_field(k):
 
 def convolve(seq1, seq2):
     modulus, generator = find_galois_field(len(bin(len(seq1))) - 3) #-3 because python's shitty bin() function adds overhead
-    print(modulus, generator)
     NTT(seq1, len(seq1), generator, modulus)
     NTT(seq2, len(seq2), generator, modulus)
     convolved = [seq1[i] * seq2[i] for i in range(len(seq1))]
@@ -100,12 +99,8 @@ def multiply_NTT(num1, num2):
     return ans
 
 if __name__ == '__main__':
-    a = 256
-    b = 256
+    a = 2039485493023948549302394857483904958748390945820394857489203498574839203984754890239457482039
+    b = 9039485493023948549302394857843902394854930239485439023948578493039485748390394857483902349857
     t = time.time()
     print(multiply_NTT(a, b))
-    print(f'{time.time() - t}s')
-    
-    t = time.time()
-    print(a * b)
     print(f'{time.time() - t}s')
