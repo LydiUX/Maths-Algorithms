@@ -1,5 +1,4 @@
 //number theoretic transform
-//doesn't work for multiplication larger than 2^16? idk why
 #include <iostream>
 #include <cmath>
 #include <cstdint>
@@ -12,6 +11,22 @@
 #pragma gcc optimise("Ofast")
 
 using namespace std;
+
+void printVectorInt(vector<int64_t> v){
+    printf("size: %d; [", v.size());
+    for (int64_t i = 0; i < v.size() - 1; i++){
+        printf("%lld,", v[i]);
+    }
+    printf("%lld]\n", v[v.size()]);
+}
+
+void printVectorDouble(vector<long double> v){
+    printf("size: %d; [", v.size());
+    for (int64_t i = 0; i < v.size() - 1; i++){
+        printf("%llf,", v[i]);
+    }
+    printf("%llf]\n", v[v.size()]);
+}
 
 int64_t modularPower(int64_t a, int64_t b, int64_t modulus){
     if (a == 0){
@@ -145,6 +160,7 @@ int INTT(vector<int64_t>& polynomial, int64_t size, int64_t generator, int64_t m
 }
 
 vector<int64_t> findGaloisField(int64_t k){
+    //error here - check modexp function
     /*we want to find a suitable field such that generator^(2^(k-1)) = -1 mod modulus
     and modulus = 2^(ak) + 1. This ensures that all polynomials are subject to constraint
     (size | modulus - 1) within the galois field.*/
