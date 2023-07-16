@@ -75,8 +75,7 @@ def convolve(seq1, seq2):
     return INTT(convolved, len(convolved), generator, modulus)
 
 def multiply_coefs(x, y):    
-        n = 1 << (len(bin(max(len(x),len(y))-1))-1)
-        print(n)
+        n = 1 << (len(bin(max(len(x), len(y)) - 1)) - 1) #2^order of polynomial; smooth n is required
         x = x + [0] * (n - len(x))
         y = y + [0] * (n - len(y))
         z = convolve(x, y)
@@ -88,7 +87,7 @@ def multiply_coefs(x, y):
             if z[i] != 0:
                 non_zero = i
             carry = carry / 2
-        return z[:non_zero+1]
+        return z[:non_zero + 1]
     
 def multiply_NTT(num1, num2):
     num1_array = [int(digit) for digit in bin(num1)[:1:-1]]
@@ -99,7 +98,13 @@ def multiply_NTT(num1, num2):
         ans = (ans << 1) | int(bit)
     return ans
 
-t = time.time()
-print(multiply_NTT(2, 3))
-print(f'{time.time() - t}s')
-print(multiply_coefs([1,4,4,3], [1,2,2,3]))
+if __name__ == '__main__':
+    a = 11938478932032984
+    b = 2834758920948789248578
+    t = time.time()
+    print(multiply_NTT(a, b))
+    print(f'{time.time() - t}s')
+
+    t = time.time()
+    print(a * b)
+    print(f'{time.time() - t}s')

@@ -224,38 +224,9 @@ int main(){
     printf("%lld\n", multiply_NTT(256, 256));
     t = clock() - t;
     printf("Time taken: %f seconds \n", ((double)t)/CLOCKS_PER_SEC);
-
     t = clock();
     printf("%d\n", 256 * 256);
     t = clock() - t;
     printf("Time taken: %f seconds \n", ((double)t)/CLOCKS_PER_SEC);
-    /*
-    vector<int64_t> polynomial = {1,4,4,3};
-    printf("%lld\n", modularPower(4, 5, 9));
-    printf("%lld\n", modularInverse(2, 5));
-    NTT(polynomial, 4, 2, 5);
-    for (int i = 0; i < polynomial.size(); i++){
-        printf("%d: %lld\n", i + 1, polynomial[i]);
-    }
-    INTT(polynomial, 4, 2, 5);
-    for (int i = 0; i < polynomial.size(); i++){
-        printf("%d: %lld\n", i + 1, polynomial[i]);
-    }
-    vector<int64_t> galoisField = findGaloisField(4);
-    for (int i = 0; i < galoisField.size(); i++){
-        printf("%d: %lld\n", i + 1, galoisField[i]);
-    }
-    vector<int64_t> polynomial2 = {1,2,2,3};
-    vector<int64_t> result;
-    result = convolve(polynomial, polynomial2);
-    for (int i = 0; i < result.size(); i++){
-        printf("%d: %lld\n", i + 1, result[i]);
-    }
-    vector<long double> result2;
-    result2 = multiplyCoefs(polynomial, polynomial2);
-    for (int i = 0; i < result2.size(); i++){
-        printf("%d: %lf\n", i + 1, result2[i]);
-    }
-    */
     return 0;
 }
