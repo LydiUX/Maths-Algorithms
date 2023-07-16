@@ -76,6 +76,7 @@ def convolve(seq1, seq2):
 
 def multiply_coefs(x, y):    
         n = 1 << (len(bin(max(len(x),len(y))-1))-1)
+        print(n)
         x = x + [0] * (n - len(x))
         y = y + [0] * (n - len(y))
         z = convolve(x, y)
@@ -99,5 +100,6 @@ def multiply_NTT(num1, num2):
     return ans
 
 t = time.time()
-print(multiply_NTT(523049394854, 2349394856594540))
+print(multiply_NTT(2, 3))
 print(f'{time.time() - t}s')
+print(multiply_coefs([1,4,4,3], [1,2,2,3]))
