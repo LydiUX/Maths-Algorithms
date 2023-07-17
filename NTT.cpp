@@ -36,10 +36,10 @@ int64_t modularExp(int64_t a, int64_t b, int64_t modulus){
     a %= modulus;
     while (b > 0){
         if ((b & 1) == 1){
-            result *= a % modulus;
+            result = (result * a) % modulus;
         }
         b >>= 1; 
-        a *= a % modulus;
+        a = (a * a) % modulus;
     }
     return result;
 }
@@ -240,7 +240,7 @@ int64_t multiply_NTT(int64_t num1, int64_t num2){
 int main(){
     clock_t t;
     t = clock();
-    printf("%lld\n", multiply_NTT(256, 256)); //algorithm works up to 256^2?
+    printf("%lld\n", multiply_NTT(257, 256)); //algorithm works up to 256^2?
     t = clock() - t;
     printf("Time taken: %f seconds \n", ((double)t)/CLOCKS_PER_SEC);
     return 0;
