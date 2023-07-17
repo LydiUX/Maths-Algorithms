@@ -76,6 +76,11 @@ def convolve(seq1, seq2):
 
 def multiply_coefs(x, y):    
         n = 1 << (len(bin(max(len(x), len(y)) - 1)) - 1) #2^order of polynomial; smooth n is required
+        '''
+        finding the number n, a power of 2, so that n is smooth. the algorithm works
+        with polynomials of order n - 1, so this pads the polynomial with zeroes if
+        n is not a power of 2.
+        '''
         x = x + [0] * (n - len(x))
         y = y + [0] * (n - len(y))
         z = convolve(x, y)
@@ -99,7 +104,7 @@ def multiply_NTT(num1, num2):
     return ans
 
 if __name__ == '__main__':
-    a = 257
+    a = 256
     b = 256
     t = time.time()
     print(multiply_NTT(a, b))
