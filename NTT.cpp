@@ -28,7 +28,7 @@ void printVectorDouble(vector<long double> v){
     printf("%llf]\n", v[v.size()]);
 }
 
-int64_t modularPower(int64_t a, int64_t b, int64_t modulus){
+int64_t modularExp(int64_t a, int64_t b, int64_t modulus){
     if (a == 0){
         return 0;
     }
@@ -38,7 +38,7 @@ int64_t modularPower(int64_t a, int64_t b, int64_t modulus){
         if ((b & 1) == 1){
             result *= a % modulus;
         }
-        b >>= 1; //equivalent to b //= 2
+        b >>= 1; 
         a *= a % modulus;
     }
     return result;
@@ -128,7 +128,7 @@ int NTT(vector<int64_t>& polynomial, int64_t size, int64_t generator, int64_t mo
     for (int64_t i = 1; i < polynomial.size(); i += 2){
         polynomialOdd.push_back(polynomial[i]);
     }
-    int64_t eval_point = modularPower(generator, 2, modulus);
+    int64_t eval_point = modularExp(generator, 2, modulus);
     NTT(polynomialEven, size / 2, eval_point, modulus);
     NTT(polynomialOdd, size / 2, eval_point, modulus);
     for (int64_t i = 0; i < size / 2; i++){
@@ -160,7 +160,6 @@ int INTT(vector<int64_t>& polynomial, int64_t size, int64_t generator, int64_t m
 }
 
 vector<int64_t> findGaloisField(int64_t k){
-    //error here - check modexp function
     /*we want to find a suitable field such that generator^(2^(k-1)) = -1 mod modulus
     and modulus = 2^(ak) + 1. This ensures that all polynomials are subject to constraint
     (size | modulus - 1) within the galois field.*/
@@ -168,7 +167,7 @@ vector<int64_t> findGaloisField(int64_t k){
     while (1){
         int64_t modulus = (a << k) + 1;
         for (int64_t generator = 2; generator <= a; generator++){
-            if (modularPower(generator, 1 << (k - 1), modulus) == modulus - 1){
+            if (modularExp(generator, 1 << (k - 1), modulus) == modulus - 1){ //this is probably wayy too big
                 vector<int64_t> field = {modulus, generator};
                 return field;
             }
@@ -194,6 +193,10 @@ vector<int64_t> convolve(vector<int64_t> seq1, vector<int64_t> seq2){
 
 vector<long double> multiplyCoefs(vector<int64_t> x, vector<int64_t> y){
     int64_t n = 1 << (binaryLength(binary(max(x.size(), y.size()) - 1)) + 1);
+    /* finding the number n, a power of 2, so that n is smooth. the algorithm works
+    with polynomials of order n - 1, so this pads the polynomial with zeroes if
+    n is not a power of 2.
+    */
     x = padVector(x, n);
     y = padVector(y, n);
     vector<int64_t> temp = convolve(x, y);
@@ -237,11 +240,7 @@ int64_t multiply_NTT(int64_t num1, int64_t num2){
 int main(){
     clock_t t;
     t = clock();
-    printf("%lld\n", multiply_NTT(256, 256));
-    t = clock() - t;
-    printf("Time taken: %f seconds \n", ((double)t)/CLOCKS_PER_SEC);
-    t = clock();
-    printf("%d\n", 256 * 256);
+    printf("%lld\n", multiply_NTT(256, 256)); //algorithm works up to 256^2?
     t = clock() - t;
     printf("Time taken: %f seconds \n", ((double)t)/CLOCKS_PER_SEC);
     return 0;
