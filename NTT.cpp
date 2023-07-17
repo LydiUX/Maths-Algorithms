@@ -1,5 +1,6 @@
 //number theoretic transform
 //not working for inputs larger than 2^16... need to fix.
+//probably just use gmp or something
 //python version is working rn though
 #include <iostream>
 #include <cmath>
