@@ -68,7 +68,7 @@ def find_galois_field(k):
         a += 1
 
 def convolve(seq1, seq2):
-    modulus, generator = find_galois_field(len(bin(len(seq1))) - 3) #-3 because python's shitty bin() function adds overhead
+    modulus, generator = find_galois_field(len(bin(len(seq1))) - 3) #-3 because python's bin() function adds overhead
     NTT(seq1, len(seq1), generator, modulus)
     NTT(seq2, len(seq2), generator, modulus)
     convolved = [seq1[i] * seq2[i] for i in range(len(seq1))]
