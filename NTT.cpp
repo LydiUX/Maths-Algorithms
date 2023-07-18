@@ -20,7 +20,7 @@ void printVectorInt(vector<int64_t> v){
     for (int64_t i = 0; i < v.size() - 1; i++){
         printf("%lld,", v[i]);
     }
-    printf("%lld]\n", v[v.size()]);
+    printf("%lld]\n", v[v.size() - 1]);
 }
 
 void printVectorDouble(vector<long double> v){
@@ -28,7 +28,7 @@ void printVectorDouble(vector<long double> v){
     for (int64_t i = 0; i < v.size() - 1; i++){
         printf("%llf,", v[i]);
     }
-    printf("%llf]\n", v[v.size()]);
+    printf("%llf]\n", v[v.size() - 1]);
 }
 
 int64_t modularExp(int64_t a, int64_t b, int64_t modulus){
