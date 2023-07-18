@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+#pragma gcc optimize("Ofast")
+
 int* sieve(int n) {
     bool primeList[n + 1];
     for (int i = 0; i < n + 1; i++) {
