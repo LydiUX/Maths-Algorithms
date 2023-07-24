@@ -11,7 +11,7 @@
 #include <bitset>
 #include <ctime>
 
-#pragma gcc optimise("Ofast")
+#pragma gcc optimize("Ofast")
 
 using namespace std;
 
