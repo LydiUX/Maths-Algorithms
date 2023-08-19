@@ -1,2 +1,2 @@
 # Maths-Algorithms
- Some maths algorithms just for fun
+ Some maths and cs algorithms
