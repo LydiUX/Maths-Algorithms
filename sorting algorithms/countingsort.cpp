@@ -47,9 +47,7 @@ void countingSort(int arr[], int n){
         ret[aux[arr[i]] - 1] = arr[i];
         aux[arr[i]]--;
     }
-    for(int i = 0; i <= n; i++){
-        arr[i] = ret[i];
-    }
+    copy(ret, ret + n + 1, arr);
 }
 
 int main(){
