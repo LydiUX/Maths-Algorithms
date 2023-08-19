@@ -6,17 +6,10 @@
 using namespace std;
 
 /*
-quicksort: 
--partitioning-
-1. pick a random pivot element and swap it with the max element
-2. a pointer is set at the beginning of the array (if the pointer > pivot). 
-3. compare the elements after the pointer with the pivot until you find one smaller than (or equal to) the pivot. swap the element with the pointer.
-4. the pointer location in the array is incremented by one; repeat step 3 until pointer location is pivot - 1.
-5. the pivot is swapped with the pointer. the numbers to the pivot's left are smaller than it; the numbers on the right are bigger.
--quicksort-
-6. two new arrays are created (left and right of the pivot (including pivot)) and sorted
-    a. tail recursion is prefered
-(7.) if the arrays are small enough (8 entries), use insertion sort.
+insertion sort:
+1. in the array, consider the first element a "sorted" subarray and the other elements "unsorted"
+2. traverse through the array - for each element in the unsorted subarray, find its position in the sorted subarray and move it to its position
+3. repeat until sorted
 */
 
 void printArray(int arr[], int n){
@@ -27,48 +20,15 @@ void printArray(int arr[], int n){
     printf("%d]\n", arr[n - 1]);
 }
 
-void insertionSort(int arr[], int min, int max){
-    //i = min + 1; skip first as already in "sorted" array
-    for (int i = min + 1; i <= max; i++){
+void insertionSort(int arr[], int n){
+    for (int i = 1; i <= n; i++){
         int data = arr[i];
         int index = i;
-        while(index > min && arr[index - 1] > data){
+        while(index > 0 && arr[index - 1] > data){
             arr[index] = arr[index - 1];
             index--;
         }
         arr[index] = data;
-    }
-}
-
-int partition(int arr[], int min, int max){
-    swap(arr[rand() % (max - min + 1) + min], arr[max]);
-    int pivot = arr[max];
-    int pointer = min;
-    for(int j = min; j < max; j++){
-        if(arr[j] <= pivot){
-            swap(arr[j], arr[pointer]);
-            pointer++;
-        }
-    }
-    swap(arr[pointer], arr[max]);
-    return pointer;
-}
-
-void quicksort(int arr[], int min, int max){
-    while(max > min){
-        if (8 >= max - min){
-            insertionSort(arr, min, max);
-            break;
-        }
-        int pivot = partition(arr, min, max);
-        if(max - pivot > pivot - min){
-            quicksort(arr, min, pivot - 1);
-            min = pivot + 1;
-        }
-        else{
-            quicksort(arr, pivot + 1, max);
-            max = pivot - 1;
-        }
     }
 }
 
@@ -100,11 +60,11 @@ int main(){
     -423, -654, 354, -996, 827, -352, 197, -154, 34, -11,
     -62, 434, -504, 285, 41, 906, -373, 734, -51, 906
     };
-    int max = sizeof(arr) / sizeof(arr[0]);
+    int n = sizeof(arr) / sizeof(arr[0]);
     clock_t t = clock();
-    quicksort(arr, 0, max - 1); //max - 1 as arr[max] is out of index (starts at index 0)
+    insertionSort(arr, n - 1); //n - 1 as arr[n] is out of index (starts at index 0)
     t = clock() - t;
     printf("Time taken: %f seconds\nArray:\n", ((double)t)/CLOCKS_PER_SEC);
-    printArray(arr, max);
+    printArray(arr, n);
     return 0;
 }
