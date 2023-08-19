@@ -35,8 +35,7 @@ void countingSort(int arr[], int n){
             max = arr[i];
         }
     }
-    int aux[max + 1];
-    int ret[n];
+    int aux[max + 1], ret[n];
     memset(aux, 0, sizeof(aux));
     for(int i = 0; i <= n; i++){
         aux[arr[i]]++;
