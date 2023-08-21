@@ -8,7 +8,7 @@ using namespace std;
 /*
 quicksort: 
 -partitioning-
-1. pick a random pivot element and swap it with the max element
+1. pick a random pivot element and swap it with the last element in array
 2. a pointer is set at the beginning of the array (if the pointer > pivot). 
 3. compare the elements after the pointer with the pivot until you find one smaller than (or equal to) the pivot. swap the element with the pointer.
 4. the pointer location in the array is incremented by one; repeat step 3 until pointer location is pivot - 1.
