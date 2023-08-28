@@ -109,7 +109,7 @@ int main(){
     vector<int> grp = intgrpmodn(mod);
     vector<int> grp2 = Zn(mod);
     vector<vector<int>> table = cayley_intgrpmodn(mod);
-     vector<vector<int>> table2 = cayley_Zn(mod, 0);
+    vector<vector<int>> table2 = cayley_Zn(mod, 0);
     print_table(table);
     print_table(table2);
     return 0;
