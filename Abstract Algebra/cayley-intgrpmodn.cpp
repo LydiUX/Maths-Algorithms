@@ -66,7 +66,7 @@ vector<vector<int>> cayley_intgrpmodn(int n){
 }
 
 int main(){
-    int mod = 8;
+    int mod = 18;
     vector<int> grp = intgrpmodn(mod);
     vector<vector<int>> table = cayley_intgrpmodn(mod);
     print_table(table);
