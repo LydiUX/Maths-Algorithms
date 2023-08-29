@@ -60,7 +60,7 @@ vector<vector<int>> cayley_intgrpmodn(int n){
     /*
         The multiplicative group of integers mod n is Abelian, meaning that the Cayley table (as a matrix) is symmetric - A^T=A
         Instead of iterating with j = 0 and table[i][j] = prod, start j at i and use table[i][j] = prod; table[j][i] = prod; to
-        compute prod once. The naive approach is O(n^2), this approach is O(n*logn)
+        compute prod once. The naive approach is O(n^2), this approach is O(n^2) but just a bit faster
     */
     for (int i = 0; i < grp.size(); i++){
         for (int j = i; j < grp.size(); j++){
