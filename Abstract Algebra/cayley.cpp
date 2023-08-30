@@ -72,10 +72,9 @@ vector<vector<int>> cayley_intgrpmodn(int n){
     return table;
 }
 
-vector<vector<int>> cayley_Zn(int n, int op){
+vector<vector<int>> cayley_Zn(int n){
     /*
-    generate the Cayley table for the integers (mod n) under op = operation {0: addition mod n, 1: multiplication mod n}
-    default is addition mod n
+    generate the Cayley table for the integers (mod n) under addition mod n
     */
     vector<int> grp;
     for (int i = 0; i < n; i++){
@@ -84,21 +83,10 @@ vector<vector<int>> cayley_Zn(int n, int op){
     vector<vector<int>> table(grp.size(), vector<int>(grp.size()));
     //this group is Abelian too :)
     for (int i = 0; i < grp.size(); i++){
-        for (int j = i; j < grp.size(); j++){
-            switch (op){
-                case 1: {
-                    int prod = (grp[i] * grp[j]) % n;
-                    table[i][j] = prod;
-                    table[j][i] = prod;
-                    break;
-                }
-                default: {
-                    int sum = (grp[i] + grp[j]) % n;
-                    table[i][j] = sum;
-                    table[j][i] = sum;
-                    break;
-                }
-            }
+        for (int j = i; j < grp.size(); j++){   
+            int sum = (grp[i] + grp[j]) % n;
+            table[i][j] = sum;
+            table[j][i] = sum;   
         }
     }
     return table;
@@ -109,7 +97,7 @@ int main(){
     vector<int> grp = intgrpmodn(mod);
     vector<int> grp2 = Zn(mod);
     vector<vector<int>> table = cayley_intgrpmodn(mod);
-    vector<vector<int>> table2 = cayley_Zn(mod, 0);
+    vector<vector<int>> table2 = cayley_Zn(mod);
     print_table(table);
     print_table(table2);
     return 0;
