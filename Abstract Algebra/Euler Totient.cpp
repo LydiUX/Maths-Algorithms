@@ -1,0 +1,26 @@
+#include <cstdio>
+#include <iostream>
+
+using namespace std;
+
+int gcd(int a, int b){
+    if (b == 0){
+        return a;
+    }
+    gcd(b, a % b);
+}
+
+int totient(int n){
+    int count = 0;
+    for (int i = 2; i < n; i++){
+        if (gcd(i, n) == 1){
+            count++;
+        }
+    }
+    return count;
+}
+
+int main(){
+    printf("%d", totient(4));
+    return 0;
+}
