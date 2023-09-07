@@ -20,6 +20,10 @@ int totient(int n){
     return count;
 }
 
+int numCyclicSubgroup(int n){
+    return totient(n);
+}
+
 int main(){
     printf("%d", totient(4));
     return 0;
