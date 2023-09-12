@@ -15,11 +15,11 @@ void print_table(vector<vector<double>> vec){
     }
 }
 
-vector<vector<double>> reduce(vector<vector<double>> matrix){
+void reduce(vector<vector<double>>& matrix){
     int size = matrix.size();
     double ratio = 0;
     if (matrix.size() != matrix[0].size()){
-        throw runtime_error("Matrix must be square");
+        throw runtime_error("Matrix must be square\n");
     }
     for (int i = 0; i < size - 1; i++){
         for (int j = size - 1; j > i; j--){
@@ -29,7 +29,7 @@ vector<vector<double>> reduce(vector<vector<double>> matrix){
             else{
                 try{
                     if (matrix[j - i][i] == 0){
-                        throw runtime_error("Division by Zero");
+                        throw runtime_error("Division by Zero\n");
                     }
                     ratio = matrix[j][i] / matrix[j - 1][i];
                 }
@@ -45,12 +45,11 @@ vector<vector<double>> reduce(vector<vector<double>> matrix){
             }
         }
     }
-    return matrix;
 }
 
 int main(){
     vector<vector<double>> vec = {{1, 9}, {3, 4}};
-    vector<vector<double>> matrix = reduce(vec);
-    print_table(matrix);
+    reduce(vec);
+    print_table(vec);
     return 0;
 }
