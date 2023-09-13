@@ -51,12 +51,12 @@ void IFFT(vector<complex<ld>>& vec){
         return;
     }
     for (int i = 0; i < n; i++){
-        vec[i] = conj(vec[i]);
+        vec[i] = conj(vec[i]); //can apply same FFT alg if original dataset has been changed to conjugate form
     }
     FFT(vec);
     for (int i = 0; i < n; i++){
         vec[i] = conj(vec[i]);
-        vec[i] /= n;
+        vec[i] /= n; //relative scaling to achieve orignal array
     }
 }
 
