@@ -24,7 +24,6 @@ void FFT(vector<complex<ld>>& vec){
         return;
     }
     complex<ld> root;
-    complex<ld> mult(1, 0);
     root.real(cos(2 * PI / n));
     root.imag(sin(2 * PI / n));
     //evaluate primitive root of unity
@@ -39,9 +38,8 @@ void FFT(vector<complex<ld>>& vec){
     FFT(even);
     FFT(odd);
     for (int i = 0; i < n / 2; i++){
-        vec[i] = even[i] + mult * odd[i];
-        vec[i + n / 2] = even[i] - mult * odd[i];
-        mult *= root;
+        vec[i] = even[i] + pow(root, i) * odd[i];
+        vec[i + n / 2] = even[i] - pow(root, i) * odd[i];
     }
 }
 
