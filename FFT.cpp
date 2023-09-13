@@ -18,7 +18,7 @@ void printVector(vector<complex<ld>> v){
     cout << v[v.size() - 1] << "]" << endl;
 }
 
-void FFT(vector<complex<ld>>& vec){
+void FFTUtil(vector<complex<ld>>& vec){
     int n = vec.size();
     if (n == 1){
         return;
@@ -35,11 +35,19 @@ void FFT(vector<complex<ld>>& vec){
     for (int i = 1; i < n; i += 2){
         odd.push_back(vec[i]);
     }
-    FFT(even);
-    FFT(odd);
+    FFTUtil(even);
+    FFTUtil(odd);
     for (int i = 0; i < n / 2; i++){
         vec[i] = even[i] + pow(root, i) * odd[i];
         vec[i + n / 2] = even[i] - pow(root, i) * odd[i];
+    }
+}
+
+void FFT(vector<complex<ld>>& vec){
+    int n = vec.size();
+    FFTUtil(vec);
+    for (int i = 0; i < n; i++){
+        vec[i] = conj(vec[i]);
     }
 }
 
@@ -48,10 +56,7 @@ void IFFT(vector<complex<ld>>& vec){
     if (n == 1){
         return;
     }
-    for (int i = 0; i < n; i++){
-        vec[i] = conj(vec[i]); //can apply same FFT alg if original dataset has been changed to conjugate form
-    }
-    FFT(vec);
+    FFTUtil(vec);
     for (int i = 0; i < n; i++){
         vec[i] = conj(vec[i]);
         vec[i] /= n; //relative scaling to achieve orignal array
