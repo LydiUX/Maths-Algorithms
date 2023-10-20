@@ -3,7 +3,10 @@
         {
             "name": "Mac",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "/opt/homebrew/Cellar/**",
+                "/usr/local/include/",
+                "/opt/homebrew/Cellar/opencv/4.8.0_7/include/opencv4/"
             ],
             "defines": [],
             "macFrameworkPath": [
@@ -11,7 +14,8 @@
             ],
             "cStandard": "c23",
             "cppStandard": "c++23",
-            "intelliSenseMode": "macos-gcc-arm64"
+            "intelliSenseMode": "macos-gcc-arm64",
+            "compilerPath": "/opt/homebrew/bin/g++-13"
         }
     ],
     "version": 4

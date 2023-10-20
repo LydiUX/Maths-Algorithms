@@ -3,6 +3,7 @@
 #include <cmath>
 #include <vector>
 #include <complex>
+#include <algorithm>
 #pragma GCC optimize("Ofast")
 #define PI 3.14159265358979323846264
 
@@ -10,12 +11,20 @@ using namespace std;
 
 typedef long double ld;
 
-void printVector(vector<complex<ld>> v){
+void print_vector(vector<complex<ld>> v){
     cout << "size: " << v.size() << "; [";
     for (int i = 0; i < v.size() - 1; i++){
         cout << v[i] << ", ";
     }
     cout << v[v.size() - 1] << "]" << endl;
+}
+
+void print_vector2(vector<vector<ld>> v){
+    cout << "size: " << v.size() << "; [";
+    for (int i = 0; i < v.size() - 1; i++){
+        cout << "(" << v[i][0] << ", " << v[i][1] << "), ";
+    }
+    cout << "(" << v[v.size() - 1][0] << ", " << v[v.size() - 1][1] << ")" << "]" << endl;
 }
 
 void FFTUtil(vector<complex<ld>>& vec){
@@ -63,10 +72,13 @@ void IFFT(vector<complex<ld>>& vec){
     }
 }
 
+
 int main(){
-    vector<complex<ld>> vec = {complex<ld>(1, 0), complex<ld>(2, 0), complex<ld>(3, 0), complex<ld>(9, 0)};
+    vector<complex<ld>> vec;
+    for (ld i = -4*PI; i < 4*PI; i+=0.1){
+        vec.push_back(complex<ld>(sinl(i), 0));
+    }
     FFT(vec);
-    IFFT(vec);
-    printVector(vec);
+    print_vector(vec);
     return 0;
 }
