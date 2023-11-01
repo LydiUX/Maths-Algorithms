@@ -36,7 +36,7 @@ a complex number c is within the mandelbrot set if and only if
 */
 
 int mandelbrot_test(cpx c, cpx& temp, int& it){
-    if (abs(temp) > pow(10, 8)){
+    if (abs(temp) >= 2){
         return 0;
     }
     if (it > pow(10, 4)){
@@ -69,7 +69,7 @@ vector<cpx> build_mandelbrot(ld max, ld increment){
 int main(){
     ofstream output;
     output.open("output.txt");
-    vector<cpx> set = build_mandelbrot(2, 0.01);
+    vector<cpx> set = build_mandelbrot(2, 0.005);
     /* for normal coordinate representation 
     for (int i = 0; i < set.size() - 1; i++){
         output << set[i] << ", ";
