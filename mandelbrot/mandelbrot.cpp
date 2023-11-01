@@ -5,6 +5,8 @@
 #include <complex>
 #include <fstream>
 
+#pragma GCC optimize("Ofast")
+
 using namespace std;
 
 typedef long double ld;
@@ -56,7 +58,7 @@ vector<cpx> build_mandelbrot(ld max, ld increment){
             temp = {0, 0};
             it = 0;
             test = {i, j};
-            cout << test << endl;
+            cout << "testing: " << test << endl;
             if (mandelbrot_test(test, temp, it)){
                 res.push_back(test);
             }
@@ -68,7 +70,7 @@ vector<cpx> build_mandelbrot(ld max, ld increment){
 int main(){
     ofstream output;
     output.open("output.txt");
-    vector<cpx> set = build_mandelbrot(2, 0.005);
+    vector<cpx> set = build_mandelbrot(2, 0.001);
     /* for normal coordinate representation 
     for (int i = 0; i < set.size() - 1; i++){
         output << set[i] << ", ";
