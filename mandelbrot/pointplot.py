@@ -8,5 +8,5 @@ if __name__ == "__main__":
     y_coord = total[len(total) // 2:]
     x = np.array(x_coord)
     y = np.array(y_coord)
-    plt.scatter(x, y, s = 2)
+    plt.scatter(x, y, s = 1)
     plt.show()

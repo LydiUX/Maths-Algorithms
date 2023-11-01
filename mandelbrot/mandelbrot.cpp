@@ -70,7 +70,7 @@ vector<cpx> build_mandelbrot(ld max, ld increment){
 int main(){
     ofstream output;
     output.open("output.txt");
-    vector<cpx> set = build_mandelbrot(2, 0.001);
+    vector<cpx> set = build_mandelbrot(2, 0.001); //mandelbrot with max radius 2, any above is redundant
     /* for normal coordinate representation 
     for (int i = 0; i < set.size() - 1; i++){
         output << set[i] << ", ";
