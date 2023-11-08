@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 if __name__ == "__main__":
-    with open("output.txt", "r") as coordinates:
+    with open("mandelbrot.txt", "r") as coordinates:
         total = [float(line.strip()) for line in coordinates]
     x_coord = total[:len(total) // 2]
     y_coord = total[len(total) // 2:]
