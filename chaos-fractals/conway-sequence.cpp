@@ -15,9 +15,9 @@ int main(){
         v.push_back(v[v[i - 1]] + v[i - v[i - 1]]);
     }
     for (int i = 1; i < v.size(); i++){
-        //f << (int)(v[i] - i / 2) << endl; 
+        f << (int)(v[i] - i / 2) << endl; 
         //f << v[i] / i << endl; //limit of this as i->inf = 0.5
-        f << (int)v[i] << endl;
+        //f << (int)v[i] << endl;
     }
     for (int i = 1; i < v.size(); i++){
         f << i << endl;

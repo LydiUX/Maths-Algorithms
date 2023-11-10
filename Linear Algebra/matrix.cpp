@@ -4,9 +4,13 @@
 #include <algorithm>
 #include <stdexcept>
 
+#pragma GCC optimize("Ofast")
+
+typedef long double ld;
+
 using namespace std;
 
-void print_table(vector<vector<double>> vec){
+void print_table(vector<vector<ld>> vec){
     for (int i = 0; i < vec.size(); i++){
         for (int j = 0; j < vec[i].size(); j++){
             cout << vec[i][j] << " ";
@@ -15,9 +19,9 @@ void print_table(vector<vector<double>> vec){
     }
 }
 
-void reduce(vector<vector<double>>& matrix){
+void reduce(vector<vector<ld>>& matrix){
     int size = matrix.size();
-    double ratio = 0;
+    ld ratio = 0;
     if (matrix.size() != matrix[0].size()){
         throw runtime_error("Matrix must be square\n");
     }
@@ -47,9 +51,20 @@ void reduce(vector<vector<double>>& matrix){
     }
 }
 
+ld det(vector<vector<ld>>& matrix){
+    reduce(matrix);
+    int n = matrix.size();
+    ld res = 1;
+    for (int i = 0; i < n; ++i){
+        res *= matrix[i][i];
+    }
+    return res;
+}
+
+
 int main(){
-    vector<vector<double>> vec = {{1, 9}, {3, 4}};
-    reduce(vec);
+    vector<vector<ld>> vec = {{1, 9}, {3, 4}};
+    det(vec);
     print_table(vec);
     return 0;
 }
