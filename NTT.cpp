@@ -11,8 +11,6 @@
 #include <bitset>
 #include <ctime>
 
-#pragma gcc optimize("Ofast")
-
 using namespace std;
 
 void printVectorInt(vector<int64_t> v){
