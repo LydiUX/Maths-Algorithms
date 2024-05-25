@@ -21,7 +21,7 @@ class Cantor {
 			generate(x, start + b, size / 3, iter - 1);
 		}
 
-		void build(std::vector<int> x, int layers, int type) {
+		std::vector<int> build(std::vector<int> x, int layers, int type) {
 			if (x.size() % 3 != 0) std::cout << "Results may not be ideal; use sizes thats are a power of 3" << std::endl;
 			std::vector<std::vector<int> > tree(layers, x);
 			for (int i = 0; i < layers; ++i) {
@@ -37,6 +37,7 @@ class Cantor {
 				}
 				std::cout << std::endl;
 			}
+			return tree[layers - 1];
 		}
 };
 
@@ -47,6 +48,12 @@ int main(int argc, char** argv) {
 	size = pow(3, size - 1);
 	std::vector<int> x(size, 1);
 	Cantor C;
-	C.build(x, static_cast<int>(logf(x.size()) / logf(3) + 1), 1);
+	std::vector<int> ret;
+	ret = C.build(x, static_cast<int>(logf(x.size()) / logf(3) + 1), 1);
+	std::cout << std::endl << std::endl;
+	for (auto& item : ret) {
+		std::cout << item << " ";
+	}
+	std::cout << std::endl;
 	return 0;
 }
